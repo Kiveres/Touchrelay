@@ -1,0 +1,41 @@
+name: Build APK from ZIP
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # 1. Распаковка твоего архива
+      - name: Unzip project
+        run: unzip TouchRelay (1).zip -d ./
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      # 2. Даем права на запуск градлу (важно для Android)
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      # 3. Сборка (используем ./gradlew, это надежнее)
+      - name: Build Release APK
+        run: ./gradlew assembleDebug
+
+      # 4. Сохранение готового файла
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: TouchRelay-APK
+          # Сменил на debug, так как для Release нужны ключи подписи,
+          # а debug установится на телефон сразу без проблем.
+          path: app/build/outputs/apk/debug/*.apk
+          retention-days: 30
