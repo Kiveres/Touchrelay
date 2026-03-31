@@ -22,10 +22,11 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Build Release APK
-        run: ./gradlew assembleRelease --stacktrace --no-daemon
+      - name: Build Release APK (with full debug info)
+        run: ./gradlew assembleRelease --stacktrace --info --no-daemon
 
       - name: Upload APK
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: TouchRelay-APK
