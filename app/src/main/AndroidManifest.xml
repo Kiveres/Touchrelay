@@ -6,9 +6,9 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
 
-        <application
+    <application
         android:allowBackup="true"
-        android:icon="@android:drawable/ic_menu_info_details"   <!-- временная системная иконка -->
+        android:icon="@android:drawable/ic_menu_info_details"
         android:label="TouchRelay"
         android:roundIcon="@android:drawable/ic_menu_info_details"
         android:supportsRtl="true"
@@ -38,7 +38,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
-        <!-- AccessibilityService -->
+        <!-- AccessibilityService for gesture dispatch -->
         <service
             android:name=".service.GestureAccessibilityService"
             android:exported="true"
@@ -52,7 +52,7 @@
                 android:resource="@xml/accessibility_service_config" />
         </service>
 
-        <!-- Overlay service -->
+        <!-- Overlay service for touch circles -->
         <service
             android:name=".service.OverlayService"
             android:exported="false"
