@@ -6,11 +6,11 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
 
-    <application
+        <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@android:drawable/ic_menu_info_details"   <!-- временная системная иконка -->
         android:label="TouchRelay"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@android:drawable/ic_menu_info_details"
         android:supportsRtl="true"
         android:theme="@style/Theme.TouchRelay">
 
@@ -25,20 +25,20 @@
             </intent-filter>
         </activity>
 
-        <!-- Controller mode activity (Huawei) -->
+        <!-- Controller mode activity -->
         <activity
             android:name=".ui.ControllerActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
 
-        <!-- Receiver mode activity (Realme) -->
+        <!-- Receiver mode activity -->
         <activity
             android:name=".ui.ReceiverActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
-        <!-- AccessibilityService for gesture dispatch -->
+        <!-- AccessibilityService -->
         <service
             android:name=".service.GestureAccessibilityService"
             android:exported="true"
@@ -52,7 +52,7 @@
                 android:resource="@xml/accessibility_service_config" />
         </service>
 
-        <!-- Overlay service for touch circles -->
+        <!-- Overlay service -->
         <service
             android:name=".service.OverlayService"
             android:exported="false"
